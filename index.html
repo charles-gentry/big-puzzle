@@ -124,46 +124,23 @@
 
 <!-- ============ PLAY ============ -->
 <section id="screen-play" class="screen" data-screen="play" hidden>
-  <header class="bar">
-    <button class="btn btn-bar" data-open="menu"><span class="ic" aria-hidden="true">☰</span> Menu</button>
-    <button class="btn btn-bar" data-open="clues"><span class="ic" aria-hidden="true">📋</span> Clues</button>
-    <button class="btn btn-bar" id="btn-hint" data-open="hint"><span class="ic" aria-hidden="true">💡</span> Help</button>
+  <header class="topbar">
+    <button class="icon-btn" data-open="menu" aria-label="Menu">☰</button>
     <span class="bar-spacer"></span>
-    <button class="btn btn-bar btn-bar-sq" data-size="-1" aria-label="Make text smaller">A−</button>
-    <button class="btn btn-bar btn-bar-sq" data-size="1" aria-label="Make text bigger">A+</button>
+    <button class="icon-btn" data-size="-1" aria-label="Make text smaller">A−</button>
+    <button class="icon-btn" data-size="1" aria-label="Make text bigger">A+</button>
   </header>
 
-  <div class="play" id="play">
-    <div class="pane-grid" id="grid-pane">
-      <div class="grid" id="grid" role="grid" aria-label="Crossword grid"></div>
-      <p class="grid-tip" id="grid-tip" hidden>🔍 Tap the grid to see it bigger</p>
+  <main class="clue-page" id="clue-page">
+    <div class="clue-block" id="clue-block" aria-live="polite">
+      <p class="clue-label" id="clue-label"></p>
+      <p class="clue-text" id="clue-text"></p>
     </div>
+    <div class="strip" id="strip" aria-label="Answer squares"></div>
+    <p class="clue-count" id="clue-count"></p>
+  </main>
 
-    <div class="pane-side">
-      <div class="clue-area">
-        <button class="nav-btn" id="btn-prev" aria-label="Previous clue">
-          <span class="nav-arrow" aria-hidden="true">◀</span><span class="nav-text">Back</span>
-        </button>
-        <div class="clue-card" id="clue-card" aria-live="polite">
-          <div class="clue-head">
-            <span><span class="clue-label" id="clue-label"></span> <span class="clue-len" id="clue-len"></span></span>
-            <button class="btn btn-speak" id="btn-speak" aria-label="Read the clue out loud">🔊</button>
-          </div>
-          <p class="clue-text" id="clue-text"></p>
-        </div>
-        <button class="nav-btn nav-next" id="btn-next" aria-label="Next clue">
-          <span class="nav-arrow" aria-hidden="true">▶</span><span class="nav-text">Next</span>
-        </button>
-      </div>
-
-      <div class="strip-wrap">
-        <div class="strip" id="strip" aria-label="Answer squares"></div>
-        <p class="status" id="status" aria-live="polite"></p>
-      </div>
-
-      <div class="keyboard" id="keyboard" aria-label="Letter keys"></div>
-    </div>
-  </div>
+  <div class="keyboard" id="keyboard" aria-label="Letter keys"></div>
 </section>
 
 <!-- ============ SHEET (menus & dialogs) ============ -->

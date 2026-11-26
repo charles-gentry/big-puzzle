@@ -5,8 +5,7 @@ phones and tablets.
 
 1. Photograph a crossword (grid and clues) from a newspaper or book.
 2. The photo is read by AI and turned into an interactive puzzle.
-3. Swipe left/right through the clues (or tap **Back** / **Next**) and type
-   answers on big on-screen keys.
+3. Swipe left/right through the clues and type answers on big on-screen keys.
 
 **Status:** photo reading is not connected yet. Taking a photo currently
 loads a generated practice puzzle so the whole flow can be tried. The
@@ -14,14 +13,13 @@ loads a generated practice puzzle so the whole flow can be tried. The
 
 ## Features
 
-- Big clue card, one clue at a time; the current answer is shown as large squares
+- One clue at a time in very large text, with the answer as big squares
+- Swipe sideways to change clue; after you finish a word it moves on to the next unfinished clue by itself
+- Big on-screen keyboard (QWERTY or A-B-C)
 - Text size buttons (A− / A+) always on screen
-- Light, dark and yellow-on-black color schemes
-- QWERTY or A-B-C key layout
-- Read clues out loud (uses the device's speech)
-- Help: show a letter, show a word, check a word or the whole puzzle (practice puzzles)
+- Light, dark and yellow-on-black color schemes; optional read-aloud (Settings, on the home screen)
+- "Show me a letter" for practice puzzles
 - Progress saved automatically on the device
-- Can be added to the home screen
 
 ## Running locally
 
