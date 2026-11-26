@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Big Puzzle</title>
+  <meta name="description" content="Large-print crossword helper. Photograph a crossword and solve it with big, easy-to-read clues.">
+  <meta name="theme-color" content="#fffaf0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Big Puzzle">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- ============ HOME ============ -->
+<section id="screen-home" class="screen" data-screen="home">
+  <div class="page">
+    <h1 class="brand"><span class="brand-mark" aria-hidden="true">A</span> Big Puzzle</h1>
+    <p class="lead">Crosswords in big, clear letters.</p>
+
+    <div class="stack">
+      <button class="btn btn-primary btn-huge" id="btn-continue" hidden>
+        <span class="btn-icon" aria-hidden="true">▶</span>
+        <span><strong>Continue my puzzle</strong><small id="continue-detail"></small></span>
+      </button>
+      <button class="btn btn-primary btn-huge" data-go="photo">
+        <span class="btn-icon" aria-hidden="true">📷</span>
+        <span><strong>Photograph a crossword</strong><small>From a newspaper or book</small></span>
+      </button>
+      <button class="btn btn-huge" data-go="practice">
+        <span class="btn-icon" aria-hidden="true">✏️</span>
+        <span><strong>Try a practice puzzle</strong><small>Ready to play straight away</small></span>
+      </button>
+    </div>
+
+    <div class="size-panel">
+      <p class="size-panel-label">Letters too small or too big?</p>
+      <div class="size-control">
+        <button class="btn btn-square" data-size="-1" aria-label="Make text smaller">A−</button>
+        <span class="size-sample" aria-hidden="true">Aa</span>
+        <button class="btn btn-square" data-size="1" aria-label="Make text bigger">A+</button>
+      </div>
+    </div>
+    <button class="btn btn-link" data-open="settings">⚙️ Settings</button>
+  </div>
+</section>
+
+<!-- ============ PRACTICE ============ -->
+<section id="screen-practice" class="screen" data-screen="practice" hidden>
+  <header class="bar">
+    <button class="btn btn-bar" data-back>◀ Back</button>
+    <h2 class="bar-title">Practice puzzle</h2>
+    <span class="bar-spacer"></span>
+  </header>
+  <div class="page">
+    <p class="lead">Choose a size. You can always make a new one later.</p>
+    <div class="stack">
+      <button class="btn btn-huge" data-practice="small">
+        <span class="btn-icon" aria-hidden="true">🟨</span>
+        <span><strong>Small</strong><small>About 10 clues · easy words</small></span>
+      </button>
+      <button class="btn btn-huge" data-practice="medium">
+        <span class="btn-icon" aria-hidden="true">🟧</span>
+        <span><strong>Medium</strong><small>About 15 clues</small></span>
+      </button>
+      <button class="btn btn-huge" data-practice="large">
+        <span class="btn-icon" aria-hidden="true">🟥</span>
+        <span><strong>Large</strong><small>About 22 clues</small></span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PHOTO ============ -->
+<section id="screen-photo" class="screen" data-screen="photo" hidden>
+  <header class="bar">
+    <button class="btn btn-bar" data-back>◀ Back</button>
+    <h2 class="bar-title">Photograph a crossword</h2>
+    <span class="bar-spacer"></span>
+  </header>
+  <div class="page">
+    <ol class="tips">
+      <li>Lay the page <strong>flat</strong> in good light.</li>
+      <li>Make sure the <strong>whole grid</strong> and <strong>all the clues</strong> are in the picture.</li>
+      <li>If they don't fit, take <strong>two photos</strong>.</li>
+    </ol>
+
+    <div id="photo-list" class="photo-list"></div>
+
+    <div class="stack">
+      <label class="btn btn-huge btn-primary" id="lbl-camera">
+        <span class="btn-icon" aria-hidden="true">📷</span>
+        <span><strong id="camera-label">Take a photo</strong></span>
+        <input type="file" accept="image/*" capture="environment" id="input-camera" class="visually-hidden">
+      </label>
+      <label class="btn btn-huge" id="lbl-library">
+        <span class="btn-icon" aria-hidden="true">🖼️</span>
+        <span><strong>Choose a saved photo</strong></span>
+        <input type="file" accept="image/*" id="input-library" class="visually-hidden">
+      </label>
+      <button class="btn btn-huge btn-go" id="btn-read" hidden>
+        <span class="btn-icon" aria-hidden="true">✔</span>
+        <span><strong>Read my puzzle</strong><small id="read-detail"></small></span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOADING ============ -->
+<section id="screen-loading" class="screen" data-screen="loading" hidden>
+  <div class="page center">
+    <div class="spinner" aria-hidden="true"></div>
+    <p class="lead" role="status">Reading your puzzle…</p>
+    <p>This can take up to a minute.</p>
+  </div>
+</section>
+
+<!-- ============ PLAY ============ -->
+<section id="screen-play" class="screen" data-screen="play" hidden>
+  <header class="bar">
+    <button class="btn btn-bar" data-open="menu"><span class="ic" aria-hidden="true">☰</span> Menu</button>
+    <button class="btn btn-bar" data-open="clues"><span class="ic" aria-hidden="true">📋</span> Clues</button>
+    <button class="btn btn-bar" id="btn-hint" data-open="hint"><span class="ic" aria-hidden="true">💡</span> Help</button>
+    <span class="bar-spacer"></span>
+    <button class="btn btn-bar btn-bar-sq" data-size="-1" aria-label="Make text smaller">A−</button>
+    <button class="btn btn-bar btn-bar-sq" data-size="1" aria-label="Make text bigger">A+</button>
+  </header>
+
+  <div class="play" id="play">
+    <div class="pane-grid" id="grid-pane">
+      <div class="grid" id="grid" role="grid" aria-label="Crossword grid"></div>
+      <p class="grid-tip" id="grid-tip" hidden>🔍 Tap the grid to see it bigger</p>
+    </div>
+
+    <div class="pane-side">
+      <div class="clue-area">
+        <button class="nav-btn" id="btn-prev" aria-label="Previous clue">
+          <span class="nav-arrow" aria-hidden="true">◀</span><span class="nav-text">Back</span>
+        </button>
+        <div class="clue-card" id="clue-card" aria-live="polite">
+          <div class="clue-head">
+            <span><span class="clue-label" id="clue-label"></span> <span class="clue-len" id="clue-len"></span></span>
+            <button class="btn btn-speak" id="btn-speak" aria-label="Read the clue out loud">🔊</button>
+          </div>
+          <p class="clue-text" id="clue-text"></p>
+        </div>
+        <button class="nav-btn nav-next" id="btn-next" aria-label="Next clue">
+          <span class="nav-arrow" aria-hidden="true">▶</span><span class="nav-text">Next</span>
+        </button>
+      </div>
+
+      <div class="strip-wrap">
+        <div class="strip" id="strip" aria-label="Answer squares"></div>
+        <p class="status" id="status" aria-live="polite"></p>
+      </div>
+
+      <div class="keyboard" id="keyboard" aria-label="Letter keys"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SHEET (menus & dialogs) ============ -->
+<div class="sheet-backdrop" id="sheet" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+    <div class="sheet-head">
+      <h2 id="sheet-title"></h2>
+      <button class="btn btn-bar" id="sheet-close">✕ Close</button>
+    </div>
+    <div class="sheet-body" id="sheet-body"></div>
+  </div>
+</div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
